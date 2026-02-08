@@ -3,7 +3,9 @@ import axios from "axios";
 import { Client } from "@stomp/stompjs";
 import "./App.css";
 
-const API = "http://localhost:8099/api";
+const BACKEND = process.env.REACT_APP_BACKEND_URL || "http://localhost:8099";
+const API = `${BACKEND}/api`;
+const WS_URL = BACKEND.replace(/^http/, "ws") + "/ws";
 
 export default function App() {
   const [screen, setScreen] = useState("join");
@@ -81,7 +83,7 @@ export default function App() {
   // WebSocket
   const connectWs = () => {
     const client = new Client({
-      brokerURL: "ws://localhost:8099/ws",
+      brokerURL: WS_URL,
       reconnectDelay: 5000,
       onConnect: () => {
         setConnected(true);

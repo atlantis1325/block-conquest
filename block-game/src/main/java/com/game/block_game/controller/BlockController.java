@@ -9,7 +9,7 @@ import com.game.block_game.repo.BlockRepository;
 
 @RestController
 @RequestMapping("/api/blocks")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BlockController {
 
     private final BlockRepository repo;
